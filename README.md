@@ -17,6 +17,79 @@ Tarragona, Catalonia, Spain.
 [official fliclib-linux-hci GitHub repository](https://github.com/50ButtonsEach/fliclib-linux-hci/blob/master/ProtocolDocumentation.md).
 
 
+### Usage
+
+```elixir
+client = Flix.connect("raspberrypi.local", 55551)
+
+:ok = Flix.subscribe(client, self())
+
+:ok = Flix.get_info(client)
+flush
+%Flix.Protocol.Events.GetInfoResponse{
+  bluetooth_controller_state: Flix.Protocol.Enums.BluetoothControllerState.Attached,
+  bluetooth_device_address: "B8:27:EB:3A:A0:8F",
+  bluetooth_device_address_type: Flix.Protocol.Enums.BdAddrType.Public,
+  max_concurrently_connected_buttons: 65535,
+  max_pending_connections: 128,
+  no_space_for_new_connections: false,
+  number_pending_connections: 0,
+  number_verified_buttons: 2,
+  verified_buttons: ["80:E4:DA:71:EE:BE", "80:E4:DA:78:45:1B"]
+}
+
+:ok = Flix.get_button_info(client, "80:E4:DA:71:EE:BE")
+flush
+%Flix.Protocol.Events.GetButtonInfoResponse{
+  bt_addr: "80:E4:DA:71:EE:BE",
+  color: "black",
+  color_length: 5,
+  firmware_version: 0,
+  flic_version: 1,
+  serial_number: "AF25-B03504",
+  serial_number_length: 11,
+  uuid: "12891B37DCDD00D9DD2A543577782AD"
+}
+
+:ok = Flix.create_connection_channel(client, "80:E4:DA:71:EE:BE", 1)
+flush
+
+flush
+%Flix.Protocol.Events.ConnectionStatusChanged{
+  conn_id: 1,
+  conn_status: Flix.Protocol.Enums.ConnectionStatus.Connected,
+  disconnect_reason: Flix.Protocol.Enums.DisconnectReason.Unspecified
+}
+%Flix.Protocol.Events.ButtonUpOrDown{
+  click_type: Flix.Protocol.Enums.ClickType.Down,
+  conn_id: 1,
+  time_diff: 0,
+  was_queued: 1
+}
+%Flix.Protocol.Events.ConnectionStatusChanged{
+  conn_id: 1,
+  conn_status: Flix.Protocol.Enums.ConnectionStatus.Disconnected,
+  disconnect_reason: Flix.Protocol.Enums.DisconnectReason.Unspecified
+}
+%Flix.Protocol.Events.ConnectionStatusChanged{
+  conn_id: 1,
+  conn_status: Flix.Protocol.Enums.ConnectionStatus.Connected,
+  disconnect_reason: Flix.Protocol.Enums.DisconnectReason.Unspecified
+}
+%Flix.Protocol.Events.ButtonClickOrHold{
+  click_type: Flix.Protocol.Enums.ClickType.Click,
+  conn_id: 1,
+  time_diff: 0,
+  was_queued: 1
+}
+%Flix.Protocol.Events.ConnectionStatusChanged{
+  conn_id: 1,
+  conn_status: Flix.Protocol.Enums.ConnectionStatus.Disconnected,
+  disconnect_reason: Flix.Protocol.Enums.DisconnectReason.Unspecified
+}
+```
+
+
 ### Author(s)
 
 - Enrique Fernandez `<efcasado@gmail.com>`
