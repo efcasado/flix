@@ -4,8 +4,8 @@ An Elixir client for the [Flic](https://flic.io/) button.
 
 ### What's in the name?
 
-The name `Flix` is the result of combining `Flic`, the name of the button, and
-`ex`, the extension used by Elixir source files.
+The name `Flix` is the result of combining `Fli`(c), the name of the button, and
+(e)`x`, the extension used by Elixir source files.
 
 [Flix](https://en.wikipedia.org/wiki/Flix) is also a town in the province of
 Tarragona, Catalonia, Spain.
@@ -19,7 +19,7 @@ Tarragona, Catalonia, Spain.
 
 ### Author(s)
 
-- Enrique Fernandez `<efcasado>`
+- Enrique Fernandez `<efcasado@gmail.com>`
 
 
 ### Thank you
