@@ -1,15 +1,11 @@
 defmodule Flix.Protocol.Commands.RemoveConnectionChannel do
-  defstruct [
-    conn_id: 0,
-  ]
+  defstruct conn_id: 0
 
   @type t :: %__MODULE__{}
 
-  def decode(<<4::8-little,
-    conn_id :: 32-little>>) do
-
+  def decode(<<4::8-little, conn_id::32-little>>) do
     %__MODULE__{
-      conn_id: conn_id,
+      conn_id: conn_id
     }
   end
 
