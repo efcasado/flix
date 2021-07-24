@@ -102,7 +102,7 @@ to work on this project.
 
 This project was conceived during BlueLabs' 2nd Hackathon (22-23 July, 2021).
 
-![BlueLaps](images/bluelabs-logo.png?raw=true "BlueLabs")
+[![BlueLabs](images/bluelabs-logo.png?raw=true "BlueLabs")](https://www.bluelabs.eu/)
 
 
 ### License
