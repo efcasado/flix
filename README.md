@@ -97,8 +97,8 @@ flush
 
 ### Thank you
 
-Thank you [BlueLabs](https://www.bluelabs.eu/) for allowing me to allocate time
-to work on this project.
+I would like to thank [BlueLabs](https://www.bluelabs.eu/) for creating an
+an opportunity for me to work on this project.
 
 This project was conceived during BlueLabs' 2nd Hackathon (22-23 July, 2021).
 
