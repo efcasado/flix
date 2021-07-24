@@ -23,18 +23,12 @@ defmodule Flix do
   @doc """
   Retrieve current state about the server.
   """
-  def get_info(client, timeout \\ 1_000) do
+  def get_info(client) do
     command = %Flix.Protocol.Commands.GetInfo{}
     encoded_command = Flix.Protocol.Commands.encode(command)
     size = byte_size(encoded_command)
     packet = <<size::16-little, encoded_command :: binary>>
-
-    # :ok = :gen_tcp.send(client, packet)
     Flix.Client.send(client, packet)
-    # {:ok, <<size::16-little>>} = :gen_tcp.recv(client, 2, timeout)
-
-    # {:ok, encoded_event} = :gen_tcp.recv(client, size, timeout)
-    # Flix.Protocol.Events.decode(encoded_event)
   end
 
   def create_scanner(client, scan_id) do
@@ -53,8 +47,8 @@ defmodule Flix do
     Flix.Client.send(client, packet)
   end
 
-  def create_connection_channel(client, bt_addr, conn_id, latency_mode \\ Flix.Protocol.Enums.LatencyMode.default(), auto_disconnect_time \\ 0, timeout \\ 1_000)
-  def create_connection_channel(client, bt_addr, conn_id, latency_mode, auto_disconnect_time, timeout) do
+  def create_connection_channel(client, bt_addr, conn_id, latency_mode \\ Flix.Protocol.Enums.LatencyMode.default(), auto_disconnect_time \\ 0)
+  def create_connection_channel(client, bt_addr, conn_id, latency_mode, auto_disconnect_time) do
     command = %Flix.Protocol.Commands.CreateConnectionChannel{bt_addr: bt_addr, conn_id: conn_id, latency_mode: latency_mode, auto_disconnect_time: auto_disconnect_time}
     encoded_command = Flix.Protocol.Commands.encode(command)
     size = byte_size(encoded_command)
@@ -95,7 +89,7 @@ defmodule Flix do
     Flix.Client.send(client, packet)
   end
 
-  def get_button_info(client, bt_addr, timeout \\ 1_000) do
+  def get_button_info(client, bt_addr) do
     command = %Flix.Protocol.Commands.GetButtonInfo{bt_addr: bt_addr}
     encoded_command = Flix.Protocol.Commands.encode(command)
     size = byte_size(encoded_command)
