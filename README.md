@@ -95,7 +95,7 @@ flush
 - Enrique Fernandez `<efcasado@gmail.com>`
 
 
-### Thank you
+### Acknowledgements
 
 I would like to thank [BlueLabs](https://www.bluelabs.eu/) for sponsoring the
 development of `Flix` by creating an opportunity for me to work on this project.
