@@ -97,8 +97,8 @@ flush
 
 ### Thank you
 
-I would like to thank [BlueLabs](https://www.bluelabs.eu/) for creating an
-an opportunity for me to work on this project.
+I would like to thank [BlueLabs](https://www.bluelabs.eu/) for sponsoring the
+development of `Flix` by creating an opportunity for me to work on this project.
 
 This project was conceived during BlueLabs' 2nd Hackathon (22-23 July, 2021).
 
