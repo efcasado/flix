@@ -10,7 +10,7 @@ blocks:
       jobs:
         - name: mix deps.get
           commands:
-            - sem-version elixir 1.9
+            - sem-version elixir 1.10
             - checkout
             - mix deps.get
             - mix test
