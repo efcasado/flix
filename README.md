@@ -41,7 +41,7 @@ defmodule Flix.Examples.Counter do
   end
 
   def set_up(client) do
-    :ok = Flix.create_connection_channel(client, "80:E4:DA:78:45:1B", 2)
+    :ok = Flix.create_connection_channel(client, "80:E4:DA:78:45:1B", 1)
   end
 
   def stop(client) do
