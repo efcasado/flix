@@ -29,11 +29,19 @@ defmodule Flix.Examples.Counter do
   alias Flix.Protocol.Enums.ClickType
 
   def start(host \\ 'raspberrypi.local', port \\ 5551) do
-    Flix.start(__MODULE__, 0, host, port)
+    {:ok, client} = Flix.start(__MODULE__, 0, host, port)
+    :ok = set_up(client)
+    {:ok, client}
   end
 
   def start_link(host \\ 'raspberrypi.local', port \\ 5551) do
-    Flix.start_link(__MODULE__, 0, host, port)
+    {:ok, client} = Flix.start_link(__MODULE__, 0, host, port)
+    :ok = set_up(client)
+    {:ok, client}
+  end
+
+  def set_up(client) do
+    :ok = Flix.create_connection_channel(client, "80:E4:DA:78:45:1B", 2)
   end
 
   def stop(client) do
