@@ -23,6 +23,7 @@ defmodule Flix.Protocol.Events.ScanWizardFoundPublicButton do
     nl2 = name_length * 8
 
     %__MODULE__{
+      scan_wizard_id: scan_wizard_id,
       bt_addr: bt_addr,
       name_length: name_length,
       name: <<name::size(nl2)>> |> String.reverse()

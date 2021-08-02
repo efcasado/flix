@@ -9,7 +9,7 @@ defmodule Flix.Protocol.Commands.Ping do
     }
   end
 
-  def encode(%__MODULE__{ping_id: ping_id} = data) do
+  def encode(%__MODULE__{ping_id: ping_id} = _data) do
     <<7::8-little, ping_id::32-little>>
   end
 end
