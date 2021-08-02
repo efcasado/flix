@@ -22,73 +22,54 @@ province of Tarragona, Catalonia, Spain.
 ### Usage
 
 ```elixir
-client = Flix.connect("raspberrypi.local", 55551)
+defmodule Flix.Examples.Counter do
+  use Flix
 
-:ok = Flix.subscribe(client, self())
+  alias Flix.Protocol.Events.ButtonSingleOrDoubleClickOrHold
+  alias Flix.Protocol.Enums.ClickType
 
-:ok = Flix.get_info(client)
-flush
-%Flix.Protocol.Events.GetInfoResponse{
-  bluetooth_controller_state: Flix.Protocol.Enums.BluetoothControllerState.Attached,
-  bluetooth_device_address: "B8:27:EB:3A:A0:8F",
-  bluetooth_device_address_type: Flix.Protocol.Enums.BdAddrType.Public,
-  max_concurrently_connected_buttons: 65535,
-  max_pending_connections: 128,
-  no_space_for_new_connections: false,
-  number_pending_connections: 0,
-  number_verified_buttons: 2,
-  verified_buttons: ["80:E4:DA:71:EE:BE", "80:E4:DA:78:45:1B"]
-}
+  def start(host \\ 'raspberrypi.local', port \\ 5551) do
+    {:ok, client} = Flix.start(__MODULE__, 0, host, port)
+    :ok = set_up(client)
+    {:ok, client}
+  end
 
-:ok = Flix.get_button_info(client, "80:E4:DA:71:EE:BE")
-flush
-%Flix.Protocol.Events.GetButtonInfoResponse{
-  bt_addr: "80:E4:DA:71:EE:BE",
-  color: "black",
-  color_length: 5,
-  firmware_version: 0,
-  flic_version: 1,
-  serial_number: "AF25-B03504",
-  serial_number_length: 11,
-  uuid: "12891B37DCDD00D9DD2A543577782AD"
-}
+  def start_link(host \\ 'raspberrypi.local', port \\ 5551) do
+    {:ok, client} = Flix.start_link(__MODULE__, 0, host, port)
+    :ok = set_up(client)
+    {:ok, client}
+  end
 
-:ok = Flix.create_connection_channel(client, "80:E4:DA:71:EE:BE", 1)
-flush
+  def set_up(client) do
+    :ok = Flix.create_connection_channel(client, "80:E4:DA:78:45:1B", 1)
+  end
 
-flush
-%Flix.Protocol.Events.ConnectionStatusChanged{
-  conn_id: 1,
-  conn_status: Flix.Protocol.Enums.ConnectionStatus.Connected,
-  disconnect_reason: Flix.Protocol.Enums.DisconnectReason.Unspecified
-}
-%Flix.Protocol.Events.ButtonUpOrDown{
-  click_type: Flix.Protocol.Enums.ClickType.Down,
-  conn_id: 1,
-  time_diff: 0,
-  was_queued: 1
-}
-%Flix.Protocol.Events.ConnectionStatusChanged{
-  conn_id: 1,
-  conn_status: Flix.Protocol.Enums.ConnectionStatus.Disconnected,
-  disconnect_reason: Flix.Protocol.Enums.DisconnectReason.Unspecified
-}
-%Flix.Protocol.Events.ConnectionStatusChanged{
-  conn_id: 1,
-  conn_status: Flix.Protocol.Enums.ConnectionStatus.Connected,
-  disconnect_reason: Flix.Protocol.Enums.DisconnectReason.Unspecified
-}
-%Flix.Protocol.Events.ButtonClickOrHold{
-  click_type: Flix.Protocol.Enums.ClickType.Click,
-  conn_id: 1,
-  time_diff: 0,
-  was_queued: 1
-}
-%Flix.Protocol.Events.ConnectionStatusChanged{
-  conn_id: 1,
-  conn_status: Flix.Protocol.Enums.ConnectionStatus.Disconnected,
-  disconnect_reason: Flix.Protocol.Enums.DisconnectReason.Unspecified
-}
+  def stop(client) do
+    :ok = Flix.stop(client)
+  end
+
+  def handle_event(
+    %ButtonSingleOrDoubleClickOrHold{click_type: ClickType.SingleClick},
+    count
+  ) do
+    new_count = count + 1
+    IO.puts "Count = #{new_count}"
+    {:ok, new_count}
+  end
+  def handle_event(
+    %ButtonSingleOrDoubleClickOrHold{click_type: ClickType.DoubleClick},
+    count
+  ) do
+    new_count = count - 1
+    IO.puts "Count = #{new_count}"
+    {:ok, new_count}
+  end
+  def handle_event(event, count) do
+    require Logger
+    Logger.debug("No handle_event/2 clause in #{__MODULE__} for #{inspect(event)}")
+    {:ok, count}
+  end
+end
 ```
 
 
