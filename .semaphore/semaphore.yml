@@ -5,15 +5,14 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: mix test
+  - name: build
     task:
       jobs:
-        - name: mix deps.get
+        - name: build
           commands:
             - sem-version elixir 1.10
             - checkout
-            - mix deps.get
-            - mix test
+            - make
       env_vars:
         - name: MIX_ENV
           value: test
