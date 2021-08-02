@@ -1,4 +1,4 @@
-.PHONY: all deps compile
+.PHONY: all deps compile test
 
 all: deps compile
 
@@ -8,3 +8,6 @@ deps:
 
 compile:
 	mix compile --warnings-as-errors
+
+test:
+	mix test
