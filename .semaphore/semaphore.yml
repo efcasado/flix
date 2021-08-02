@@ -1,0 +1,18 @@
+version: v1.0
+name: Elixir
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: build
+    task:
+      jobs:
+        - name: build
+          commands:
+            - sem-version elixir 1.10
+            - checkout
+            - make
+      env_vars:
+        - name: MIX_ENV
+          value: test

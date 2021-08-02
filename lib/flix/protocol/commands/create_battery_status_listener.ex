@@ -11,7 +11,7 @@ defmodule Flix.Protocol.Commands.CreateBatteryStatusListener do
     }
   end
 
-  def encode(%__MODULE__{listener_id: listener_id, bt_addr: bt_addr} = data) do
+  def encode(%__MODULE__{listener_id: listener_id, bt_addr: bt_addr} = _data) do
     bt_addr = Flix.Utils.bluetooth_address_to_binary(bt_addr)
 
     <<12::8-little, listener_id::32-little, bt_addr::little-bytes-6>>
