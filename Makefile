@@ -7,4 +7,4 @@ deps:
 	mix deps.compile
 
 compile:
-	mix compile
+	mix compile --warnings-as-errors
