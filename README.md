@@ -40,7 +40,7 @@ defmodule Flix.Examples.Counter do
     :ok = Flix.stop(client)
   end
 
-  def handle_flix_event(
+  def handle_event(
     %ButtonSingleOrDoubleClickOrHold{click_type: ClickType.SingleClick},
     count
   ) do
@@ -48,7 +48,7 @@ defmodule Flix.Examples.Counter do
     IO.puts "Count = #{new_count}"
     {:ok, new_count}
   end
-  def handle_flix_event(
+  def handle_event(
     %ButtonSingleOrDoubleClickOrHold{click_type: ClickType.DoubleClick},
     count
   ) do
@@ -56,7 +56,7 @@ defmodule Flix.Examples.Counter do
     IO.puts "Count = #{new_count}"
     {:ok, new_count}
   end
-  def handle_flix_event(event, count) do
+  def handle_event(event, count) do
     require Logger
     Logger.debug("No handle_event/2 clause in #{__MODULE__} for #{inspect(event)}")
     {:ok, count}
