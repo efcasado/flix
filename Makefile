@@ -1,4 +1,4 @@
-.PHONY: all deps compile test
+.PHONY: all deps compile test clean
 
 all: deps compile
 
@@ -11,3 +11,8 @@ compile:
 
 test:
 	mix test
+
+clean:
+	mix clean --all
+	mix deps.clean --all
+	rm -rf _build
