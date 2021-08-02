@@ -1,6 +1,6 @@
 # Flix
 
-[![Build Status](https://efcasado.semaphoreci.com/badges/flix/branches/master.svg?style=shields)]
+[![Build Status](https://efcasado.semaphoreci.com/badges/flix/branches/master.svg?style=shields)](https://efcasado.semaphoreci.com/projects/flix)
 
 An Elixir client for the [Flic](https://flic.io/) button.
 
