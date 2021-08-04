@@ -1,5 +1,5 @@
 version: v1.0
-name: Deployment to production
+name: Publish to Hex
 agent:
   machine:
     type: e1-standard-2
