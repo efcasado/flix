@@ -15,7 +15,7 @@ docs:
 test:
 	mix test
 
-publish:
+publish: deps compile
 	mix hex.publish
 
 clean:
