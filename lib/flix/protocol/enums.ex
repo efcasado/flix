@@ -78,7 +78,7 @@ defmodule Flix.Protocol.Enums do
 
   defenum ScanWizardResult do
     value(Success, 0)
-    value(Cancelled_by_user, 1)
+    value(CancelledByUser, 1)
     value(FailedTimeout, 2)
     value(ButtonIsPrivate, 3)
     value(BluetoothUnavailable, 4)
