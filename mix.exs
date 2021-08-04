@@ -7,7 +7,16 @@ defmodule Flix.MixProject do
       version: "0.1.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+
+      # ExDoc
+      name: "Flix",
+      source_url: "https://github.com/efcasado/flix",
+      homepage_url: "https://github.com/efcasado/flix",
+      docs: [
+        main: "Flix", # The main page in the docs
+        extras: ["README.md"]
+      ]
     ]
   end
 
