@@ -21,7 +21,8 @@ defmodule Flix.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:enum_type, "~> 1.1"}
+      {:enum_type, "~> 1.1"},
+      {:ex_doc, "~> 0.25.1", only: :dev, runtime: false}
     ]
   end
 end
