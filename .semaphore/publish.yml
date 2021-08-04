@@ -1,0 +1,15 @@
+version: v1.0
+name: Deployment to production
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: "Publishing"
+    task:
+      jobs:
+        - name: "publish"
+          commands:
+            - checkout
+            - make publish

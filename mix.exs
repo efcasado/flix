@@ -4,6 +4,7 @@ defmodule Flix.MixProject do
   def project do
     [
       app: :flix,
+      description: "An Elixir client for the Flic button.",
       version: "0.1.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
@@ -16,7 +17,9 @@ defmodule Flix.MixProject do
       docs: [
         main: "Flix", # The main page in the docs
         extras: ["README.md"]
-      ]
+      ],
+
+      package: package()
     ]
   end
 
@@ -33,5 +36,14 @@ defmodule Flix.MixProject do
       {:enum_type, "~> 1.1"},
       {:ex_doc, "~> 0.25.1", only: :dev, runtime: false}
     ]
+  end
+
+  defp package do
+    [
+     name: :flix,
+     files: ["mix.exs", "lib", "test", "README*"],
+     maintainers: ["Enrique Fernandez"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/efcasado/flix"}]
   end
 end

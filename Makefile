@@ -1,4 +1,4 @@
-.PHONY: all deps compile test clean docs
+.PHONY: all deps compile docs test publish clean
 
 all: deps compile
 
@@ -14,6 +14,9 @@ docs:
 
 test:
 	mix test
+
+publish:
+	mix hex.publish
 
 clean:
 	mix clean --all

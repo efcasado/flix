@@ -16,3 +16,8 @@ blocks:
       env_vars:
         - name: MIX_ENV
           value: test
+promotions:
+  - name: Publish to Hex
+    pipeline_file: publish.yml
+    auto_promote:
+      when: "result = 'passed' and tag =~ '.*'"
