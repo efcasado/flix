@@ -21,6 +21,42 @@ province of Tarragona, Catalonia, Spain.
 
 ### Usage
 
+Flic buttons don't connect directly to `Flix` nor the other way around. Flic buttons connect
+to a `flicd` via bluetooth. `Flix` applications also connect to `flicd` but via a TCP. See
+the diagram below.
+
+```
++------------+  command(s)  +---------+               +---------------+
+|            +------------->|         |               |               |
+|  Flix App  |     TCP      |  flicd  |<--------------+  Flic Button  |
+|            |<-------------+         |   Bluetooth   |               |
++------------+   event(s)   +---------+               +---------------+
+```
+
+You can find more information about Flic's `flicd` in its
+[official page](https://github.com/50ButtonsEach/fliclib-linux-hci).
+
+Writing a Flix application is as simple as defining a new Elixir module,
+using Flix's `__using__` macro (ie. `use Flix`) and implementing Flix's
+`handle_event/2` callback function.
+
+```elixir
+defmodule MyFlixApp do
+  use Flix
+
+  def handle_event(event, state) do
+    new_state = do_something(event, state)
+    {:ok, new_state}
+  end
+end
+```
+
+Below is a full example of a Flix application where a counter is initialised to `0`
+and increased or decreased by one when someone does single- or double-clicks a Flic
+button, respectively. The code makes the following assumptions:
+- `flicd` is running and reachable on `raspberrypi.local:5551`.
+- The Flic button (ie. `"80:E4:DA:78:45:1B"`) has already been paired with `flicd`.
+
 ```elixir
 defmodule Flix.Examples.Counter do
   use Flix
