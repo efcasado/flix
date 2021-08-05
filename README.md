@@ -1,6 +1,6 @@
 # Flix
 
-[![Build Status](https://efcasado.semaphoreci.com/badges/flix/branches/master.svg?style=shields)](https://efcasado.semaphoreci.com/projects/flix) [![Hex.pm](https://img.shields.io/hexpm/v/flix.svg)](https://hex.pm/packages/flix)
+[![Build Status](https://efcasado.semaphoreci.com/badges/flix/branches/master.svg?style=shields)](https://efcasado.semaphoreci.com/projects/flix) [![Hex.pm](https://img.shields.io/hexpm/v/flix.svg)](https://hex.pm/packages/flix)  [![Hexdocs.pm]()](https://hexdocs.pm/flix/0.1.0/)
 
 An Elixir client for the [Flic](https://flic.io/) button.
 
@@ -16,7 +16,7 @@ province of Tarragona, Catalonia, Spain.
 ### The Flic protocol
 
 `Flix` implements the full Flic protocol as per described in the
-[official fliclib-linux-hci GitHub repository](https://github.com/50ButtonsEach/fliclib-linux-hci/blob/master/ProtocolDocumentation.md).
+official fliclib-linux-hci [GitHub repository](https://github.com/50ButtonsEach/fliclib-linux-hci/blob/master/ProtocolDocumentation.md).
 
 
 ### Usage
